@@ -42,25 +42,7 @@ create table buku (
 );
 </code>
 
-5. tabel penulis
-
-MariaDB [koleksi_buku]> desc penulis;
-+------------+-----------------+------+-----+---------+----------------+
-| Field      | Type            | Null | Key | Default | Extra          |
-+------------+-----------------+------+-----+---------+----------------+
-| penulis_id | int(4) unsigned | NO   | PRI | NULL    | auto_increment |
-| nama       | varchar(50)     | YES  |     | NULL    |                |
-| kelamin    | enum('P','L')   | YES  |     | P       |                |
-| alamat     | varchar(50)     | YES  |     | NULL    |                |
-| kota       | varchar(40)     | YES  |     | NULL    |                |
-| kodepos    | varchar(5)      | YES  |     | NULL    |                |
-| propinsi   | varchar(20)     | YES  |     | NULL    |                |
-| negara_id  | char(2)         | YES  |     | NULL    |                |
-| website    | varchar(25)     | YES  |     | NULL    |                |
-| email      | varchar(25)     | YES  |     | NULL    |                |
-| telepon    | varchar(20)     | YES  |     | NULL    |                |
-| keterangan | varchar(255)    | YES  |     | NULL    |                |
-+------------+-----------------+------+-----+---------+----------------+
+4. tabel penulis
 <code>
 create table penulis (
   penulis_id int(4) unsigned primary key auto_increment,
@@ -78,6 +60,29 @@ create table penulis (
 );
 </code>
 
-7. tabel penerbit
-8. tabel buku_penerbit
-9. tabel buku_penulis
+5. tabel penerbit
+<code>
+create table penerbit (
+  penerbit_id int(4) primary key auto_increment,
+  nama varchar(50),
+  alamat varchar(50),
+  kota varchar(40),
+  kodepos varchar(5),
+  propinsi varchar(20),
+  negara_id char(2),
+  website varchar(25),
+  email varchar(25),
+  telepon varchar(20),
+  keterangan varchar(255)
+);
+</code>
+
+6. tabel buku_penerbit
+<code>
+create table buku_penerbit(buku_id int(5) unsigned default 0, penerbit_id int(4) unsigned default 0, CONSTRAINT pk_buku_penerbit PRIMARY KEY (buku_id, penerbit_id));
+</code>
+
+7. tabel buku_penulis
+<code>
+create table buku_penulis(buku_id int(5) unsigned default 0, penulis_id int(4) unsigned default 0, CONSTRAINT pk_buku_penulis PRIMARY KEY (buku_id, penulis_id));
+</code>

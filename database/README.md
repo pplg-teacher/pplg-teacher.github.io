@@ -24,7 +24,7 @@ Sebagai contoh kita akan membuat tabel dengan nama tabelnya **tema** yang memili
 > ```create table negara(negara_id char(2) primary key, nama_neg_penulis  varchar(30));```
 
 3. tabel buku
-<code>
+> <code>
 create table buku (
   buku_id int(5) unsigned primary key auto_increment,
   judul varchar(50),
@@ -43,6 +43,41 @@ create table buku (
 </code>
 
 5. tabel penulis
-6. tabel penerbit
-7. tabel buku_penerbit
-8. tabel buku_penulis
+
+MariaDB [koleksi_buku]> desc penulis;
++------------+-----------------+------+-----+---------+----------------+
+| Field      | Type            | Null | Key | Default | Extra          |
++------------+-----------------+------+-----+---------+----------------+
+| penulis_id | int(4) unsigned | NO   | PRI | NULL    | auto_increment |
+| nama       | varchar(50)     | YES  |     | NULL    |                |
+| kelamin    | enum('P','L')   | YES  |     | P       |                |
+| alamat     | varchar(50)     | YES  |     | NULL    |                |
+| kota       | varchar(40)     | YES  |     | NULL    |                |
+| kodepos    | varchar(5)      | YES  |     | NULL    |                |
+| propinsi   | varchar(20)     | YES  |     | NULL    |                |
+| negara_id  | char(2)         | YES  |     | NULL    |                |
+| website    | varchar(25)     | YES  |     | NULL    |                |
+| email      | varchar(25)     | YES  |     | NULL    |                |
+| telepon    | varchar(20)     | YES  |     | NULL    |                |
+| keterangan | varchar(255)    | YES  |     | NULL    |                |
++------------+-----------------+------+-----+---------+----------------+
+<code>
+create table penulis (
+  penulis_id int(4) unsigned primary key auto_increment,
+  nama varchar(50),
+  kelamin enum('P','L') default 'P',
+  alamat varchar(50),
+  kota varchar(40),
+  kodepos varchar(5),
+  propinsi varchar(20),
+  negara_id char(2),
+  website varchar(25),
+  email varchar(25),
+  telepon varchar(20),
+  keterangan varchar(255)
+);
+</code>
+
+7. tabel penerbit
+8. tabel buku_penerbit
+9. tabel buku_penulis
